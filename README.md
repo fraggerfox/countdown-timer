@@ -32,8 +32,11 @@ also be helpful, hence the choice for TED's Countdown Timer.
 
 ### Changes from original
 
-* Timer is no longer restricted to 20 Minutes maximum, has been extended to 40
+* Timer is no longer restricted to 20 Minutes maximum, has been extended to 60
   Minutes.
+
+* The interval increments are 5 Minutes, instead of 1 minute, this was done to
+  avoid the rather long drop down list.
 
 * Removed the Google Analytics and related scripts.
 
@@ -54,12 +57,12 @@ access the index.html which will load the Countdown Timer UI.
 ## Use it
 
 To start the Timer, select the duration of your talk (choose any length from 2
-to 40 minutes). Next hit "Start now" to begin the countdown immediately, or
+to 60 minutes). Next hit "Start now" to begin the countdown immediately, or
 "Start in 10 seconds" to give yourself time to get ready.
 
 For a less distracting countdown, the Timer initially displays minutes only —
-for example, a 14-minute talk will flash “14” to start, then display “13” for
-the next 60 seconds, then “12,” and so on.  The dots along the bottom show your
+for example, a 15-minute talk will flash “15” to start, then display “14” for
+the next 60 seconds, then “13,” and so on.  The dots along the bottom show your
 progress through each minute (each dot represents six seconds).
 
 The Timer will switch to a second-by-second countdown at 90 seconds. If you go
