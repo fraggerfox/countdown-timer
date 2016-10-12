@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="no-js" style="background-color: rgb(0, 0, 0); cursor: none;" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Talk Countdown</title>
+    <meta name="description" content="Speaker Timer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+  </head>
+  <body class="" style="background-color: rgb(0, 0, 0);">
+    <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
+      <div id="getStarted" class="row" style="">
+        <div style="height: 100%;" class="col-xs-12">
+          <div id="middle-row" class="row">
+            <div class="middle-row Set-timer">
+              <h3 class="Set-timer__title"><img src="images/logo.png" class="Set-timer__logo"><strong>Talk Timer</strong></h3>
+              <form onsubmit="return false;" class="form-inline">
+                <div class="Set-timer__options">
+                  <select id="timeSelect" class="form-control form-control--dropdown Set-timer__select">
+		    <option selected="selected" value="2400000">40 Minutes</option>
+		    <option value="2340000">39 Minutes</option>
+		    <option value="2280000">38 Minutes</option>
+		    <option value="2220000">37 Minutes</option>
+		    <option value="2160000">36 Minutes</option>
+		    <option value="2100000">35 Minutes</option>
+		    <option value="2040000">34 Minutes</option>
+		    <option value="1980000">33 Minutes</option>
+		    <option value="1920000">32 Minutes</option>
+		    <option value="1860000">31 Minutes</option>
+		    <option value="1800000">30 Minutes</option>
+		    <option value="1740000">29 Minutes</option>
+		    <option value="1680000">28 Minutes</option>
+		    <option value="1620000">27 Minutes</option>
+		    <option value="1560000">26 Minutes</option>
+		    <option value="1500000">25 Minutes</option>
+		    <option value="1440000">24 Minutes</option>
+		    <option value="1380000">23 Minutes</option>
+		    <option value="1320000">22 Minutes</option>
+		    <option value="1260000">21 Minutes</option>
+		    <option value="1200000">20 Minutes</option>
+                    <option value="1140000">19 Minutes</option>
+                    <option value="1080000">18 Minutes</option>
+                    <option value="1020000">17 Minutes</option>
+                    <option value="960000">16 Minutes</option>
+                    <option value="900000">15 Minutes</option>
+                    <option value="840000">14 Minutes</option>
+                    <option value="780000">13 Minutes</option>
+                    <option value="720000">12 Minutes</option>
+                    <option value="660000">11 Minutes</option>
+                    <option value="600000">10 Minutes</option>
+                    <option value="540000">9 Minutes</option>
+                    <option value="480000">8 Minutes</option>
+                    <option value="420000">7 Minutes</option>
+                    <option value="360000">6 Minutes</option>
+                    <option value="300000">5 Minutes</option>
+                    <option value="240000">4 Minutes</option>
+                    <option value="180000">3 Minutes</option>
+                    <option value="120000">2 Minutes</option>
+                    <option value="60000">1 Minute</option>
+                    <option value="0">0 Minutes</option>
+                  </select>
+                  <select id="secSelect" class="form-control form-control--dropdown Set-timer__select">
+                    <option value="0" selected="selected"> 0 Seconds</option>
+                    <option value="30000"> 30 Seconds</option>
+                  </select>
+                  <select id="howSelect" class="form-control form-control--dropdown Set-timer__select">
+                    <option value="on-stage">  Start on stage</option>
+                    <option value="now" selected="selected">        Start now</option>
+                    <option value="ten-seconds"> Start in 10 seconds</option>
+                  </select>
+                </div>
+                <button id="startDropdownButton" class="btn btn-default button Set-timer__start">
+                  Go
+
+                </button>
+                <!--button.btn.btn-danger.btn-start(data-start='now') Start now-->
+                <!--button.btn.btn-danger.btn-start(data-start='ten-seconds') Start in 10 seconds-->
+                <!--button.btn.btn-danger.btn-start(data-start='on-demand') On demand-->
+              </form>
+            </div>
+          </div>
+          <div id="bottom-row" class="row">
+            <div id="help-icon-group" class="col-xs-12 bottom-row start-help-icon"><img src="images/help.svg" id="help-icon" class="svg help-btn">
+              <p>
+                Help
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="counter-wrapper" class="row" style="display: none;">
+        <div class="col-xs-12">
+          <div id="overtime" style="display: none;">
+            &nbsp;
+
+          </div>
+          <div id="timer" class="timer-undertime">
+            <div id="counter-container">17</div>
+          </div>
+        </div>
+      </div>
+      <div id="dot-wrapper" class="row" style="display: none;">
+        <div id="dots" class="row dotStart">
+          <div class="dotblock">
+            <div id="one" class="dot dotFade"></div>
+          </div>
+          <div class="dotblock">
+            <div id="two" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="three" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="four" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="five" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="six" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="seven" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="eight" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="nine" class="dot"></div>
+          </div>
+          <div class="dotblock">
+            <div id="ten" class="dot"></div>
+          </div>
+        </div>
+        <div id="pause" class="fade-object" style="display: none;">
+          <div class="pausedot" style="display: block;"><img src="images/pause.svg" id="pause-icon"></div>
+        </div>
+      </div>
+      <div id="pauseModal" aria-hidden="true" class="modal fade" style="display: none;">
+        <div class="modalOptions">
+          <div class="row">
+            <div class="col-xs-2 modaldot col-xs-offset-3">
+              <div id="resume" class="helpdot"><img src="images/play.svg" id="modal-play-icon" class="svg">
+                <p>Resume</p>
+              </div>
+            </div>
+            <div class="col-xs-2 modaldot">
+              <div id="restart" class="helpdot"><img src="images/start-over.svg" id="modal-play-icon" class="svg">
+                <p>Start&nbsp;Over</p>
+              </div>
+            </div>
+            <div class="col-xs-2 modaldot">
+              <div id="help" class="helpdot"><img src="images/help.svg" id="modal-help-icon" class="svg help-btn">
+                <p>
+                  Help
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="startPauseModal" aria-hidden="true" class="modal" style="display: none;">
+        <div class="modalOptions">
+          <div class="row">
+            <div class="col-xs-2 modaldot col-xs-offset-5">
+              <div id="startPlay" class="helpdot"><img src="images/play.svg" id="modal-play-icon" class="svg">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="helpModal" aria-hidden="true" class="modal fade" style="display: none;">
+        <div class="modalOptions">
+          <h1>Help</h1><br>
+          <div class="helpText">
+	    This is a Countdown timer that is basically a
+re-implementation of the TED Countdown Timer used for TED
+Conference. We intent to keep this also free to use and
+replicate / modify as per your requirements.
+            <br><br>
+            <h3><strong>Get it</strong></h3>
+            The Countdown Timer is free to use, and can be accessed
+through any Web browser. Using Chrome’s Presentation Mode allows you to
+focus only on the timer.  If you want to use the Timer like an app on
+your mobile device, tap on the share icon (iOS) or menu button (Android)
+ and select “Add to Home Screen.”
+            <br><br>
+            <h3><strong>Use it</strong></h3>
+            To start the Timer, select the duration of your talk (choose
+ any length from 2 to 18 minutes). Next hit "Start now" to begin the
+countdown immediately, or "Start in 10 seconds" to give yourself time to
+ get ready.
+            <br><br>
+            For a less distracting countdown, the Timer initially
+displays minutes only — for example, a 14-minute talk will flash “14” to
+ start, then display “13” for the next 60 seconds, then “12,” and so on.
+ The dots along the bottom show your progress through each minute (each
+dot represents six seconds).
+            <br><br>
+            The Timer will switch to a second-by-second countdown at 90
+seconds. If you go over your chosen time, the Timer screen will turn
+red, flash "OVER TIME," and begin counting up.
+            <br><br>
+            To pause the Timer, use the button in the lower right
+corner; if you're on a laptop or desktop machine, move your mouse to
+make the pause button appear.
+            <br><br>
+            If you spot a bug or just need help, please contact us at
+<a href="https://github.com/fraggerfox/countdown-timer/issues">GitHub
+Issue Queue</a>. Feel free to raise a ticket and we shall respond as
+fast as possible.
+          </div><br><br>
+          <button onclick="$('#helpModal').modal('hide');" class="btn btn-danger button">
+            Done
+
+          </button>
+        </div>
+      </div>
+      <div id="delayModal" aria-hidden="true" class="modal">
+        <div id="delay-countdown-holder" class="modalOptions">
+          <div class="counterSpot">Start in <div id="delayCounter">10</div></div>
+          <div class="cancelLink"><a onclick="$('#delayModal').modal('hide');">
+              Cancel
+              </a></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        countdown.initialize();
+      });
+
+    </script>
+</body></html>
