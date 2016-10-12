@@ -33,7 +33,7 @@ your mobile device, tap on the share icon (iOS) or menu button (Android)
 ## Use it
 
 To start the Timer, select the duration of your talk (choose any length from 2
-to 18 minutes). Next hit "Start now" to begin the countdown immediately, or
+to 40 minutes). Next hit "Start now" to begin the countdown immediately, or
 "Start in 10 seconds" to give yourself time to get ready.
 
 For a less distracting countdown, the Timer initially displays minutes only —
