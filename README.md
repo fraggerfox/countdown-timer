@@ -12,6 +12,23 @@ You can find the original TED Countdown Timer [here][ted_countdown_url]
 
 ### Motivation
 
+When I was asked to find a suitable timer for a technical talk event with a
+limit on the talk time alloted for the speaker, my search did not yeild any
+useful results. Most of the solutions I came across was either too bloated,
+platform specific like for Windows or Linux, needed connectivity online like in
+TED Countdown.
+
+After without much success, I decided to replicate the TED Countdown Timer which
+was very minimalistic and met most of the requirements. However it lacked the ability
+to host talks above 20 minutes (which is the hard limit on most TED talks) and it
+still needed to load from a web page which needed connectivity.
+
+The aim of this little project is to have an offline solution which can be hosted
+in a system which has no internet connectivity and have the ability to host talks
+which are more than 20 minutes in length.
+
+I personally felt that having an interface that most users are familiar with will
+also be helpful, hence the choice for TED's Countdown Timer.
 
 ### Changes from original
 
@@ -20,15 +37,19 @@ You can find the original TED Countdown Timer [here][ted_countdown_url]
 
 * Removed the Google Analytics and related scripts.
 
+* "Un-minified" the CSS file.
+
 * The files have been neatly organized into the proper folders.
 
 ## Get it
 
 The Countdown Timer is free to use, and can be accessed through any Web browser.
-Using Chrome’s Presentation Mode allows you to focus only on the timer.  If you
-want to use the Timer like an app on
-your mobile device, tap on the share icon (iOS) or menu button (Android)
- and select “Add to Home Screen.”
+Using Chrome’s Presentation Mode allows you to focus only on the timer. If you
+want to use the Timer like an app on your mobile device, tap on the share icon
+(iOS) or menu button (Android) and select “Add to Home Screen.”
+
+You will need to put the files in a Web Server (like Apache for example) and then
+access the index.html which will load the Countdown Timer UI.
 
 ## Use it
 
