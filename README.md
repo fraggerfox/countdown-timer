@@ -75,7 +75,7 @@ laptop or desktop machine, move your mouse to make the pause button appear.
 If you spot a bug or just need help, feel free to raise a ticket and we shall
 respond as fast as possible.
 
-##License
+## License
 
 Countdown Timer is licensed under the [Apache license, Version 2.0 ](LICENSE)
 
