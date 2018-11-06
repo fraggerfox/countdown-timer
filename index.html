@@ -63,7 +63,11 @@
                     <option value="now" selected="selected">        Start now</option>
                     <option value="ten-seconds"> Start in 10 seconds</option>
                   </select>
-                </div>
+		  <div id="allowOvertimeCheckbox" class="form-control form-control--dropdown Set-timer__checkbox">
+		    <input type="checkbox" value="0" id="allowOvertime" name="" checked />
+		    <label for="allowOvertime">Allow Overtime</label>
+		  </div>
+		</div>
                 <button id="startDropdownButton" class="btn btn-default button Set-timer__start">
                   Go
 
@@ -90,7 +94,7 @@
             &nbsp;
 
           </div>
-          <div id="timer" class="timer-undertime">
+	  <div id="timer" class="timer-undertime">
             <div id="counter-container">17</div>
           </div>
         </div>

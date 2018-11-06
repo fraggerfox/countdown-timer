@@ -9531,7 +9531,7 @@ return jQuery;
  */
 
 ;(function($) {
-	$.timer = function(func, time, autostart) {	
+	$.timer = function(func, time, autostart) {
 	 	this.set = function(func, time, autostart) {
 	 		this.init = true;
 	 	 	if(typeof func == 'object') {
@@ -9604,7 +9604,7 @@ return jQuery;
 	 			this.setTimer();
 	 		}
 	 	};
-	 	
+
 	 	if(this.init) {
 	 		return new $.timer(func, time, autostart);
 	 	} else {
@@ -12152,6 +12152,7 @@ var countdown = {
 
 		$cC.html(countdown.formatTime(currentTime));
 		countdown.formatBackground(currentTime);
+		var allowOvertime = $("#allowOvertime").is(":checked");
 
 		// If timer is not complete keep counting.
 		if (currentTime > 0) {
@@ -12510,14 +12511,33 @@ var countdown = {
 		$cC.removeClass('timer-undertime').addClass('timer-overtime');
 	},
 
-	updateTimer: function() {
+	done: function() {
+		$('body, html, .container-fluid').css('background-color', '#e62b1e');
+		$('#dots').hide();
+		$cC.removeClass('countdown');
 
+		countdown.Timer.stop();
+
+		$('#overtime').show();
+		$('#overtime').html('<strong>TIME&nbsp;OVER</strong>');
+		$cC.removeClass('timer-undertime').addClass('timer-overtime');
+	},
+
+	updateTimer: function() {
+                var allowOvertime = $('#allowOvertimeCheckbox input[type="checkbox"]').is(":checked");
 		$cC.html(countdown.formatTime(currentTime));
 		countdown.formatBackground(currentTime);
 
 		// If timer is not complete keep counting.
 		if (currentTime > 0) {
 			// Dunno
+		}
+
+		// If timer hit zero check if overtime is allowed
+		if (currentTime == 0) {
+		        if (allowOvertime == false) {
+		            countdown.done();
+		        }
 		}
 
 		// If timer is complete, trigger overtime
@@ -12536,6 +12556,16 @@ var countdown = {
 	},
 
 	isPaused: function() {
+                var allowOvertime = $('#allowOvertimeCheckbox input[type="checkbox"]').is(":checked");
+
+	        // If timer was decremented after zero
+		// check if the allowOvertime flag was set for count up
+		if (currentTime < 0) {
+		        if (allowOvertime == false) {
+			    return false;
+		        }
+		}
+
 		if (countdown.Timer.isActive) {
 			return false;
 		}
@@ -12577,6 +12607,7 @@ var countdown = {
 		$('#pauseModal').modal('hide');
 		$('#getStarted').show();
 		$('#dot-wrapper').hide();
+		$('#dots').show();
 		$('#dots').addClass('dotStart');
 
 		$('body, html, .container-fluid').css('background-color', '#000');

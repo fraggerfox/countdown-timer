@@ -178,6 +178,7 @@ button {
     overflow: visible
 }
 
+input,
 button,
 select {
     text-transform: none
@@ -9097,6 +9098,16 @@ select {
     background-color: #fff!important
 }
 
+input {
+    color: #000!important;
+    background-color: #fff!important
+}
+
+input,
+#getStarted {
+    font-family: "Neue Helvetica W01", "Lucida Console", Monaco, monospace
+}
+
 select,
 #getStarted {
     font-family: "Neue Helvetica W01", "Lucida Console", Monaco, monospace
@@ -9137,6 +9148,10 @@ select,
 }
 
 #getStarted #middle-row select {
+    font-family: "Neue Helvetica W01"
+}
+
+#getStarted #middle-row label {
     font-family: "Neue Helvetica W01"
 }
 
@@ -9217,6 +9232,18 @@ select,
 
 .Set-timer__select.form-control:first-of-type {
     margin-left: 0
+}
+
+.Set-timer__checkbox.form-control {
+    width: 32%;
+    margin-left: 2%;
+    display: block;
+    float: left
+}
+
+.Set-timer__checkbox.form-control:first-of-type {
+    margin-left: 0px;
+    margin-top: 2%;
 }
 
 .Set-timer__start {
