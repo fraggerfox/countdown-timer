@@ -12299,7 +12299,7 @@ $(function () {
 var isLive = false;
 
 // When to switch from mins to seconds in seconds.
-var minToSeconds = 90;
+var minToSeconds = 60;
 
 // How often to cycle the counter
 // Lowering this below 1000 may cuase issues in Tabbed browsers... ala Chriome,
