@@ -38,6 +38,10 @@ also be helpful, hence the choice for TED's Countdown Timer.
 * The interval increments are 5 Minutes, instead of 1 minute, this was done to
   avoid the rather long drop down list.
 
+* A new checkbox has been added (Allow Overtime) which if unchecked, prevents
+  the timer to count up (default behavior) once the allocated time has run out.
+  Also shows a flashing "TIME OVER" message on the screen.
+
 * Removed the Google Analytics and related scripts.
 
 * "Un-minified" the CSS file.
