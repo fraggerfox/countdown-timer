@@ -72,7 +72,9 @@ progress through each minute (each dot represents six seconds).
 
 The Timer will switch to a second-by-second countdown at 90 seconds. If you go
 over your chosen time, the Timer screen will turn red, flash "OVER TIME," and
-begin counting up.
+begin counting up if the "Allow Overtime" box is checked. If the "Allow
+Overtime" box is unchecked then the count down will stop, the Timer screen will
+turn red and flash "TIME OVER".
 
 To pause the Timer, use the button in the lower right corner; if you're on a
 laptop or desktop machine, move your mouse to make the pause button appear.
