@@ -51,8 +51,9 @@ Using Chrome’s Presentation Mode allows you to focus only on the timer. If you
 want to use the Timer like an app on your mobile device, tap on the share icon
 (iOS) or menu button (Android) and select “Add to Home Screen.”
 
-You will need to put the files in a Web Server (like Apache for example) and then
-access the index.html which will load the Countdown Timer UI.
+You will need to put the files in a Web Server (like Apache for example) or
+download these files to your computer, and then access the `index.html` via
+browser. This will load the Countdown Timer UI.
 
 ## Use it
 
