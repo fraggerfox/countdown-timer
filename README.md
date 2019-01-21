@@ -8,6 +8,8 @@ This is a Countdown timer that is basically a re-implementation of the TED
 Countdown Timer used for TED Conference. We intent to keep this also free to use
 and replicate / modify as per your requirements.
 
+You can try out Countdown Timer [here][countdown_url]
+
 You can find the original TED Countdown Timer [here][ted_countdown_url]
 
 ### Motivation
@@ -76,8 +78,13 @@ laptop or desktop machine, move your mouse to make the pause button appear.
 If you spot a bug or just need help, feel free to raise a ticket and we shall
 respond as fast as possible.
 
+## Credits
+
+Thanks to @gwhammett for hosting Countdown Timer.
+
 ## License
 
 Countdown Timer is licensed under the [Apache license, Version 2.0 ](LICENSE)
 
 [ted_countdown_url]: http://countdown.ted.com/
+[countdown_url]: http://www.princeton.edu/~hammett/TED-like_talk_timer/
