@@ -86,5 +86,5 @@ Thanks to @gwhammett for hosting Countdown Timer.
 
 Countdown Timer is licensed under the [Apache license, Version 2.0 ](LICENSE)
 
-[ted_countdown_url]: http://countdown.ted.com/
+[ted_countdown_url]: https://timer.ted.com/
 [countdown_url]: http://www.princeton.edu/~hammett/TED-like_talk_timer/
