@@ -11932,378 +11932,17 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-
-// This is foo
-var isLive = false;
-
-// When to switch from mins to seconds in seconds.
-var minToSeconds = 90;
-
-// How often to cycle the counter
-// Lowering this below 1000 may cuase issues in Tabbed browsers... ala Chriome,
-var incrementTime = 500;
-var currentTime   = 0;
-
-// This is a holder for the last time the clock was used for.
-var restartClockTime = false;
-
-//  Delaytimer
-DelayTimer = false;
-
-var countdown = {
-
-	initialize: function() {
-
-		urlTime = queryObject.get('time');
-
-		if (!isNaN(urlTime)) {
-			$('#timeSelect').val(urlTime*1000);
-		}
-
-		$('#startPauseButton').click(function() {
-			countdown.startPausedCounter();
-		});
-
-		$('#startButton').click(function() {
-			countdown.startCounter(false);
-		});
-
-		$('#start10Button').click(function() {
-			countdown.delayCounter();
-		});
-
-    $('#startDropdownButton').click(function() {
-      switch($('#howSelect').val()) {
-				case 'on-stage':
-					countdown.startPausedCounter();
-				break;
-				case 'now':
-					countdown.startCounter(false);
-				break;
-				case 'ten-seconds':
-					countdown.delayCounter();
-				break;
-			}
-		});
-
-		// activate pause button
-		$('#pause').on('click', function() {
-			countdown.pause();
-		});
-
-		// activate resume button
-		$('#resume').on('click', function() {
-			countdown.pause();
-		});
-
-		// activate resume button
-		$('#startPlay').on('click', function() {
-			countdown.startPause();
-			//celly
-		});
-
-		// activate resstart button
-		$('#restart').on('click', function() {
-			countdown.restart();
-		});
-
-		// activate help button
-		$('.help-btn').on('click', function() {
-			countdown.help();
-		});
-	},
-
-	startCounter: function(startPaused) {
-
-		currentTime = $('#timeSelect').val();
-		var halfTime = $('#secSelect').val();
-
-		currentTime = parseInt(currentTime)+parseInt(halfTime);
-
-		// Don't start at the whole minute, Instead... teh Half Minute.
-		// currentTime = currentTime - 1000;
-
-		$cC = $('#counter-container');
-		$cC.html(countdown.formatTime(currentTime));
-
-		//
-		$('#getStarted').css('display', 'none');
-		$('#counter-wrapper').show();
-		$('#dot-wrapper').show();
-
-		// set initial display value
-		if (!restartClockTime) {
-			restartClockTime = currentTime;
-		}
-
-		// Remove any fades that have triggered.
-		$('.dot').removeClass('dotFade');
-
-		//setTimeout(function() {
-			countdown.Timer = $.timer(countdown.updateTimer, incrementTime, true);
-			if (startPaused) {
-				countdown.startPause();
-			}
-		//}, 750);
-
-	},
-
-	startPausedCounter: function() {
-		countdown.startCounter(true);
-	},
-
-	delayCounter: function() {
-		// show modal
-		$('#delayModal').modal({ keyboard: false },'show');
-		countdown.delayCounterTimer(10);
-	},
-
-	delayCounterTimer: function(seconds) {
-
-			// Update the counter
-			var displayTime = seconds;
-			if (seconds < 10) {
-				displayTime	+= "&nbsp;";
-			}
-
-			$('#delayCounter').html(displayTime);
-
-			// Bootstrap Modal callbacks now working reliably. :( )
-			// I think it has something to do with the .fade class.
-			// This is a workaround.
-			if (!$('#delayModal').is(':visible')) {
-				return false;
-			}
-
-			// if > 0, update. ese, START!
-			if (seconds > 0) {
-				setTimeout(function() { countdown.delayCounterTimer(--seconds); }, 1000);
-			} else {
-				$('#delayModal').modal('hide');
-				countdown.startCounter(false);
-			}
-	},
-
-	formatTime: function (ms) {
-		var seconds = Math.floor(ms/1000);
-		var minutes = Math.floor(seconds/60);
-		var display = 00;
-
-		if (seconds >= minToSeconds) {
-			display = minutes;
-		} else {
-			display = seconds;
-			if (seconds >= 0) {
-				$cC.addClass('countdown');
-			}
-		}
-
-		var time = Math.abs(display)
-		return time;
-	},
-
-	formatBackground: function (ms) {
-
-		var seconds   = Math.floor(ms/1000);
-		var remaining = Math.floor(seconds%60);
-		var width = (remaining/60)*100;
-		var emptyBgColor = '#333333';
-		var fullBgColor  = '#ffffff';
-
-		// when we hit 90 seconds .. fade out the circles.
-		if (seconds <= minToSeconds && seconds >= 0) {
-			$('.dot').addClass('dotFade');
-			return;
-		}
-
-		// reset on the change, not the new minute.
-		if(remaining == 59) {
-			$('.dot').removeClass('dotFade');
-			$('#dots').removeClass('dotStart');
-			return;
-		}
-
-		if (remaining <= 60) { $('#one').addClass('dotFade'); }
-		if (remaining <= 54) { $('#two').addClass('dotFade'); }
-		if (remaining <= 48) { $('#three').addClass('dotFade'); }
-		if (remaining <= 42) { $('#four').addClass('dotFade'); }
-		if (remaining <= 36) { $('#five').addClass('dotFade'); }
-		if (remaining <= 30) { $('#six').addClass('dotFade'); }
-		if (remaining <= 24) { $('#seven').addClass('dotFade'); }
-		if (remaining <= 18) { $('#eight').addClass('dotFade'); }
-		if (remaining <= 12) { $('#nine').addClass('dotFade'); }
-		if (remaining <= 6)  { $('#ten').addClass('dotFade');}
-
-	},
-
-	overtime: function() {
-		$('body, html, .container-fluid').css('background-color', '#e62b1e');
-		$('#dots').hide();
-		$cC.removeClass('countdown');
-	},
-
-	overtimeBlink: function() {
-		$('#overtime').show();
-		$('#overtime').html('<strong>OVER&nbsp;TIME</strong>');
-		$cC.removeClass('timer-undertime').addClass('timer-overtime');
-	},
-
-	updateTimer: function() {
-
-		$cC.html(countdown.formatTime(currentTime));
-		countdown.formatBackground(currentTime);
-
-		// If timer is not complete keep counting.
-		if (currentTime > 0) {
-			// Dunno
-		}
-
-		// If timer is complete, trigger overtime
-		if (currentTime < 0) {
-			countdown.overtime();
-		}
-
-		// No, No, Seriously... You're overtime.
-		if (currentTime <= -9500) {
-			countdown.overtimeBlink();
-		}
-
-		// Increment timer position
-		currentTime -= incrementTime;
-
-	},
-
-	isPaused: function() {
-		if (countdown.Timer.isActive) {
-			return false;
-		}
-		return true;
-	},
-
-	pause: function() {
-		if (countdown.isPaused()) {
-			$('#pauseModal').modal('hide');
-			countdown.Timer.play();
-		} else {
-			$('#pauseModal').modal('show');
-			countdown.Timer.pause();
-		}
-	},
-
-	startPause: function() {
-		if (countdown.isPaused()) {
-			$('.pausedot').show();
-			$('#startPauseModal').modal('hide');
-			countdown.Timer.play();
-		} else {
-			$('.pausedot').hide();
-			$('#startPauseModal').modal('show');
-			countdown.Timer.pause();
-		}
-	},
-
-	restart: function() {
-		currentTime = restartClockTime;
-		countdown.Timer = false;
-
-		if (!restartClockTime) {
-			 currentTime = restartClockTime;
-		}
-
-		$('#counter-wrapper').hide();
-		$('#overtime').hide();
-		$('#pauseModal').modal('hide');
-		$('#getStarted').show();
-		$('#dot-wrapper').hide();
-		$('#dots').addClass('dotStart');
-
-		$('body, html, .container-fluid').css('background-color', '#000');
-		$cC.removeClass('countdown').removeClass('timer-overtime');
-
-	},
-
-	help: function() {
-		$('#helpModal').modal({backdrop: 'static'}, 'show');
-  },
-}
-
-var timeIt = new (function() {
-
-	this.resetCountdown = function() {
-
-		// Get time from form
-		var newTime = parseInt($form.find('input[type=text]').val()) * 1000;
-		if (newTime > 0) {currentTime = newTime;}
-
-		// Stop and reset timer
-		Example2.Timer.stop().once();
-
-	};
-
-});
-
-// IE fix.
-if (!Date.now) {
-  Date.now = function() { return new Date().getTime(); }
-}
-
-// This is from
-// http://stackoverflow.com/questions/15532423/fade-out-mouse-cursor-when-inactive-with-jquery
-$(function () {
-
-	// Don't fade out on mobile.
-	if ($.browser.mobile) {
-		return false;
-	}
-
-	var timer;
-	var fadeInBuffer = false;
-	$(document).mousemove(function () {
-		if (!fadeInBuffer) {
-			if (timer) {
-				clearTimeout(timer);
-				timer = 0;
-			}
-
-			$('.fade-object').fadeIn();
-			$('html').css({
-				cursor: ''
-			});
-		} else {
-			fadeInBuffer = false;
-		}
-
-		timer = setTimeout(function () {
-			$('.fade-object').fadeOut()
-			$('html').css({
-				cursor: 'none'
-			});
-			fadeInBuffer = true;
-		}, 1000)
-	});
-
-});
-
-/**
- * jQuery.browser.mobile (http://detectmobilebrowser.com/)
- *
- * jQuery.browser.mobile will be true if the browser is a mobile device
- *
- **/
-(function(a){(jQuery.browser=jQuery.browser||{}).mobile=/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))})(navigator.userAgent||navigator.vendor||window.opera);
-
 },{}]},{},[1]);
 
-
-// This is foo
-var isLive = false;
+// TED Countdown Timer
+// ===================
 
 // When to switch from mins to seconds in seconds.
 var minToSeconds = 60;
 
 // How often to cycle the counter
-// Lowering this below 1000 may cuase issues in Tabbed browsers... ala Chriome,
-var incrementTime = 500;
+// Lowering this below 1000 may cuase issues in Tabbed browsers... ala Chrome,
+var incrementTime = 1000;
 var currentTime   = 0;
 
 // This is a holder for the last time the clock was used for.
@@ -12468,9 +12107,6 @@ var countdown = {
 
 		var seconds   = Math.floor(ms/1000);
 		var remaining = Math.floor(seconds%60);
-		var width = (remaining/60)*100;
-		var emptyBgColor = '#333333';
-		var fullBgColor  = '#ffffff';
 
 		// when we hit 90 seconds .. fade out the circles.
 		if (seconds <= minToSeconds && seconds >= 0) {
@@ -12502,9 +12138,6 @@ var countdown = {
 		$('body, html, .container-fluid').css('background-color', '#e62b1e');
 		$('#dots').hide();
 		$cC.removeClass('countdown');
-	},
-
-	overtimeBlink: function() {
 		$('#overtime').show();
 		$('#overtime').html('<strong>OVER&nbsp;TIME</strong>');
 		$cC.removeClass('timer-undertime').addClass('timer-overtime');
@@ -12523,11 +12156,6 @@ var countdown = {
 		// If timer is complete, trigger overtime
 		if (currentTime < 0) {
 			countdown.overtime();
-		}
-
-		// No, No, Seriously... You're overtime.
-		if (currentTime <= -9500) {
-			countdown.overtimeBlink();
 		}
 
 		// Increment timer position
@@ -12589,20 +12217,6 @@ var countdown = {
   },
 }
 
-var timeIt = new (function() {
-
-	this.resetCountdown = function() {
-
-		// Get time from form
-		var newTime = parseInt($form.find('input[type=text]').val()) * 1000;
-		if (newTime > 0) {currentTime = newTime;}
-
-		// Stop and reset timer
-		Example2.Timer.stop().once();
-
-	};
-
-});
 
 // IE fix.
 if (!Date.now) {
